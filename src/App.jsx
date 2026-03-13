@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Journal from "./Journal"
 
 export default function App() {
   const [page, setPage] = useState("home")
@@ -41,9 +42,9 @@ export default function App() {
         ))}
       </nav>
 
-      {page === "home" && <h2 style={{ textAlign: "center", fontWeight: "300", color: "#e8a0b0" }}>what are you letting go of? </h2>}
-      {page === "journal" && <h2 style={{ textAlign: "center", fontWeight: "300", color: "#8aab84" }}>urge journal </h2>}
-      {page === "stats" && <h2 style={{ textAlign: "center", fontWeight: "300", color: "#e8a0b0" }}>your progress </h2>}
+      {page === "home" && <h2 style={{ textAlign: "center", fontWeight: "300", color: "#e8a0b0" }}>what are you letting go of? 🌸</h2>}
+      {page === "journal" && <Journal />}
+      {page === "stats" && <h2 style={{ textAlign: "center", fontWeight: "300", color: "#e8a0b0" }}>your progress ✨</h2>}
     </div>
   )
 }

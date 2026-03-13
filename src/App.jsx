@@ -1,10 +1,24 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { supabase } from "./supabase"
 import Journal from "./Journal"
 import Stats from "./Stats"
 import Home from "./Home"
+import Auth from "./Auth"
 
 export default function App() {
   const [page, setPage] = useState("home")
+  const [session, setSession] = useState(null)
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
+    })
+    supabase.auth.onAuthStateChange((_event, session) => {
+      setSession(session)
+    })
+  }, [])
+
+  if (!session) return <Auth />
 
   return (
     <div style={{
@@ -23,9 +37,9 @@ export default function App() {
           letterSpacing: "8px",
           color: "#8aab84",
           margin: 0
-        }}>solace ꩜</h1>
+        }}>serene ꩜</h1>
         <p style={{ color: "#e8a0b0", letterSpacing: "3px", fontSize: "0.8rem" }}>
-          break free, softly
+          heal, gently
         </p>
       </div>
 
@@ -42,6 +56,16 @@ export default function App() {
             fontSize: "0.75rem"
           }}>{p}</button>
         ))}
+        <button onClick={() => supabase.auth.signOut()} style={{
+          background: "transparent",
+          color: "#e8a0b0",
+          border: "1px solid #e8a0b0",
+          borderRadius: "20px",
+          padding: "8px 20px",
+          cursor: "pointer",
+          letterSpacing: "2px",
+          fontSize: "0.75rem"
+        }}>sign out</button>
       </nav>
 
       {page === "home" && <Home />}

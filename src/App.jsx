@@ -1,121 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
+import { useState } from "react"
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [page, setPage] = useState("home")
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div style={{
+      fontFamily: "'Georgia', serif",
+      maxWidth: "600px",
+      margin: "0 auto",
+      padding: "40px 20px",
+      background: "linear-gradient(135deg, #f2f7f0, #fdf0f3)",
+      minHeight: "100vh",
+      color: "#4a5e4a"
+    }}>
+      <div style={{ textAlign: "center", marginBottom: "40px" }}>
+        <h1 style={{
+          fontSize: "3rem",
+          fontWeight: "300",
+          letterSpacing: "8px",
+          color: "#8aab84",
+          margin: 0
+        }}>solace ꩜</h1>
+        <p style={{ color: "#e8a0b0", letterSpacing: "3px", fontSize: "0.8rem" }}>
+          break free, softly
+        </p>
+      </div>
 
-      <div className="ticks"></div>
+      <nav style={{ display: "flex", justifyContent: "center", gap: "20px", marginBottom: "40px" }}>
+        {["home", "journal", "stats"].map(p => (
+          <button key={p} onClick={() => setPage(p)} style={{
+            background: page === p ? "#c9e0c4" : "transparent",
+            color: page === p ? "#4a5e4a" : "#8aab84",
+            border: "1px solid #c9e0c4",
+            borderRadius: "20px",
+            padding: "8px 20px",
+            cursor: "pointer",
+            letterSpacing: "2px",
+            fontSize: "0.75rem"
+          }}>{p}</button>
+        ))}
+      </nav>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      {page === "home" && <h2 style={{ textAlign: "center", fontWeight: "300", color: "#e8a0b0" }}>what are you letting go of? </h2>}
+      {page === "journal" && <h2 style={{ textAlign: "center", fontWeight: "300", color: "#8aab84" }}>urge journal </h2>}
+      {page === "stats" && <h2 style={{ textAlign: "center", fontWeight: "300", color: "#e8a0b0" }}>your progress </h2>}
+    </div>
   )
 }
-
-export default App

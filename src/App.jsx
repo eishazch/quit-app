@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Journal from "./Journal"
+import Stats from "./Stats"
 
 export default function App() {
   const [page, setPage] = useState("home")
@@ -44,7 +45,7 @@ export default function App() {
 
       {page === "home" && <h2 style={{ textAlign: "center", fontWeight: "300", color: "#e8a0b0" }}>what are you letting go of? 🌸</h2>}
       {page === "journal" && <Journal />}
-      {page === "stats" && <h2 style={{ textAlign: "center", fontWeight: "300", color: "#e8a0b0" }}>your progress ✨</h2>}
+      {page === "stats" && <Stats />}
     </div>
   )
 }
